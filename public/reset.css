@@ -1,0 +1,23 @@
+@media screen and (min-width: 768px) {
+  html {
+    /* 这里加权重是因为 amfe-flexible 通过行内样式设置了根字体 */
+    font-size: 16px !important;
+  }
+  /* 大写 PX 可以让 postcss-pxtorem 忽略转成 rem */
+  /* body {
+      max-width: 500px; 
+      margin: 0 auto;
+    } */
+}
+* {
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+li {
+  text-align: left;
+}

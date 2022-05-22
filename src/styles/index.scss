@@ -1,0 +1,36 @@
+@import './variable';
+
+.flex {
+  &-col {
+    display: flex;
+    flex-direction: column;
+    & > .flex-item {
+      width: 100%;
+    }
+  }
+  &-row {
+    display: flex;
+    flex-direction: row;
+    & > .flex-item {
+      height: 100%;
+    }
+  }
+  &-center{
+    align-items: center;
+  }
+  &-item {
+    flex: 1;
+  }
+}
+
+.text {
+  &-m {
+    text-align: center;
+  }
+  &-l {
+    text-align: left;
+  }
+  &-r {
+    text-align: right;
+  }
+}
