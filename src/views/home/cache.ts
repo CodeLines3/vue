@@ -55,7 +55,7 @@ export const ProLabels: any[] = [
   { label: '项目名称', key: 'name', span: 12, xs: {span: 24} },
   { label: '项目描述', key: 'description', lis: true },
   { label: '项目业绩', key: 'result' },
-  { label: '技术栈', key: 'stack', href: '#ability' },
+  // { label: '技术栈', key: 'stack', href: '#ability' },
 ];
 // 个人特点
 export const Feature = {
@@ -102,15 +102,15 @@ export const Edu = [
 export const Ability: any = [
   { key: "root", text: '专业技能', figure: 'Circle' },
   { key: "L1", text: 'Vue', dir: "left", parent: "root", url: 'https://v3.cn.vuejs.org/' },
-  { key: "L11", text: 'Vue Router', parent: "L1", url: 'https://router.vuejs.org/zh/' },
   { key: "L12", text: 'VueX', parent: "L1", url: 'https://vuex.vuejs.org/zh/' },
   { key: "L14", text: 'element-ui', parent: "L1", url: 'https://element.eleme.io/#/zh-CN' },
+  { key: "L11", text: 'Vue Router', parent: "L1", url: 'https://router.vuejs.org/zh/' },
   { key: "L13", text: 'class-component', parent: "L1", url: 'https://class-component.vuejs.org/' },
-  { key: "L14", text: 'vxe-table', parent: "L1", url: 'https://vxetable.cn/#/table/base/basic' },
+  // { key: "L14", text: 'vxe-table', parent: "L1", url: 'https://vxetable.cn/#/table/base/basic' },
     
   { key: "L2", text: 'CSS', parent: "root",  dir: "left" },
   { key: "L21", text: 'Sass', parent: "L2", url: 'https://www.sass.hk/' },
-  { key: "L22", text: 'Less', parent: "L2", url: 'https://less.bootcss.com/features/' },
+  // { key: "L22", text: 'Less', parent: "L2", url: 'https://less.bootcss.com/features/' },
   { key: "L23", text: 'CSS3', parent: "L2", },
 
   { key: "L3", text: '版本部署', parent: "root", dir: "left" },
@@ -120,19 +120,18 @@ export const Ability: any = [
   { key: "R2", text: '其他', parent: "root",  dir: "right" },
   { key: "R23", text: 'RxJS', parent: "R2", url: 'https://cn.rx.js.org/' },
   { key: "R23", text: 'Vite', parent: "R2", },
-  { key: "R24", text: 'TinyMCE', parent: "R2", },
-  { key: "R25", text: 'Muuri', parent: "R2", },
+  // { key: "R24", text: 'TinyMCE', parent: "R2", },
+  // { key: "R25", text: 'Muuri', parent: "R2", },
   { key: "R26", text: 'Node', parent: "R2", },
 
   { key: "R1", text: '可视化', parent: "root", dir: "right" },
   { key: "R11", text: 'GoJS', parent: "R1", url: 'https://gojs.net/latest/' },
-  { key: "R12", text: 'Echarts等', parent: "R1", url: 'https://echarts.apache.org/zh/index.html' },
+  { key: "R12", text: '*charts等', parent: "R1", url: 'https://echarts.apache.org/zh/index.html' },
   { key: "R14", text: 'Fabric系列', parent: "R1", url: 'http://fabricjs.com/' },
   { key: "R15", text: 'Svg', parent: "R1", url: 'https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial' },
 
   { key: "L4", text: 'Angular6+', parent: "root", dir: "right",  url: 'http://angular.cn/' },
   { key: "L41", text: 'ngzerro', parent: "L4", url: 'http://ng.ant.design/docs/introduce/zh' },
-
 
   { key: "R3", text: '小程序', parent: "root", dir: "left",  url: 'https://developers.weixin.qq.com/miniprogram/dev/framework/' },
 ];

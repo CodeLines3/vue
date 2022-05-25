@@ -26,7 +26,6 @@ const chunks = [
   "jspdf",
 ];
 const base = loadEnv(process.env.NODE_ENV, process.cwd()).VITE_BASE;
-console.log(base)
 // https://vitejs.dev/config/
 export default defineConfig({
   base,

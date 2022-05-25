@@ -12,6 +12,7 @@ const { featureOption } = userFeatures(Feature);
 const offset = computed(() => window.innerHeight / 2);
 const homeEl: any = ref(null); // 截图节点
 const dialogVisible = ref(false);
+
 /** 下载时间 */
 let current = ref("");
 const subscription: Subscription = interval(1000)
@@ -20,6 +21,7 @@ const subscription: Subscription = interval(1000)
     const date = Dayjs().format("YYYY-MM-DD HH:mm:ss");
     current.value = date;
   });
+const {isLoaded, download} = useSaver(homeEl, current.value);
 /** 钩子函数 */
 onUnmounted(() => {
   subscription.unsubscribe();
@@ -27,7 +29,7 @@ onUnmounted(() => {
 
 // 下载
 function handleSave() {
-  useSaver(homeEl.value, current.value);
+  download();
 }
 
 // 打开链接
@@ -47,7 +49,7 @@ function handleDbClick(data: any) {
       <el-affix :offset="offset" target=".home">
         <el-button type="primary" @click="handleSave">下载</el-button>
       </el-affix>
-      <p class="current">{{ current }}</p>
+      <div class="current">{{ current }}</div>
       <ul>
         <li class="info grid">
           <img :src="MiniPro" alt="小程序" />
@@ -55,20 +57,6 @@ function handleDbClick(data: any) {
             <el-col :span="10" :xs="{ span: 24 }" v-for="(item, index) of Info" :key="index" :title="item.label">
               <label class="label">{{ item.label }}：</label>
               <span>{{ item.value }}</span>
-            </el-col>
-          </el-row>
-        </li>
-        <li class="edu">
-          <p class="title">教育经历</p>
-          <el-row class="level">
-            <el-col :span="6" :xs="{ span: 24 }" v-for="(item, index) of Edu" :key="index" :title="item.label">
-              <el-row>
-                <el-col :span="0" :xs="{ span: 6 }" class="label">{{ item.label }}：</el-col>
-                <el-col :span="24" :xs="{ span: 16 }">
-                  <a v-if="item.url" :href="item.url" target="_blank" rel="noopener noreferrer">{{ item.value }}</a>
-                  <span v-else>{{ item.value }}</span>
-                </el-col>
-              </el-row>
             </el-col>
           </el-row>
         </li>
@@ -107,6 +95,20 @@ function handleDbClick(data: any) {
             </el-col>
           </el-row>
         </li>
+        <li :class="['edu', { ptop: !isLoaded}]">
+          <p class="title">教育经历</p>
+          <el-row class="level">
+            <el-col :span="6" :xs="{ span: 24 }" v-for="(item, index) of Edu" :key="index" :title="item.label">
+              <el-row>
+                <el-col :span="0" :xs="{ span: 6 }" class="label">{{ item.label }}：</el-col>
+                <el-col :span="24" :xs="{ span: 16 }">
+                  <a v-if="item.url" :href="item.url" target="_blank" rel="noopener noreferrer">{{ item.value }}</a>
+                  <span v-else>{{ item.value }}</span>
+                </el-col>
+              </el-row>
+            </el-col>
+          </el-row>
+        </li>
         <li class="ability" id="ability">
           <p class="title">技能展示</p>
           <a href="https://codelines3.github.io/vue/" target="_blank" rel="noopener noreferrer"
@@ -114,7 +116,7 @@ function handleDbClick(data: any) {
           <TreeAbility @dbclick="handleDbClick" />
         </li>
         <li class=" flex-col">
-          <p class="title">特点简介</p>
+          <p class="title">职业素养</p>
           <v-chart class="feature" autoresize :option="featureOption" />
         </li>
       </ul>
@@ -136,6 +138,14 @@ function handleDbClick(data: any) {
   margin-left: calc(100% + 2cm);
 }
 
+a{ 
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #00f;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+}
+
 .home {
   position: relative;
   min-height: 297mm;
@@ -149,18 +159,17 @@ function handleDbClick(data: any) {
   position: absolute;
   left: 1cm;
   top: 0;
-  transform: translateY(-50%);
   line-height: 32px;
-  height: 16px;
   color: #099;
 }
-
+p {
+  line-height: 32px;
+}
 .title {
   position: relative;
   font-weight: 600;
   font-size: 20px;
   overflow: hidden;
-  line-height: 32px;
   height: 32px;
   border-bottom: 1px solid $color;
 
@@ -223,8 +232,6 @@ ul {
       display: none;
     }
   }
-
-
 }
 
 .sub {
@@ -248,6 +255,12 @@ ul {
 
 .feature {
   height: 260px;
+}
+
+.edu {
+  &.ptop {
+    margin-top: 68px;
+  }
 }
 
 .modal-img {
@@ -293,7 +306,6 @@ ul {
       .el-row {
         flex-wrap: nowrap;
       }
-
     }
   }
 
