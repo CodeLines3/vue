@@ -48,12 +48,25 @@ function init() {
           case 'L4':
             return '#fb4f27';
           case 'R1':
-            return '#F72C5B';
+            const head2 = key.substr(0, 3);
+            switch (head2) {
+              case 'R11':
+                return '#61dafb';
+              case 'R12':
+                return '#bd34fe';
+              case 'R13':
+                return '#F72C5B';
+              default:
+                return '#111';
+            }
+          case 'R4':
+            return '#d6ba33';
           case 'R3':
             return '#f90';
           case 'ro':
             return 'rgba(0, 240, 0, 0.5)';
-          default: break;
+          default: 
+            return '#111';
         }
       })
     ),

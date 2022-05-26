@@ -38,7 +38,10 @@ function handleDbClick(data: any) {
   if (text === '小程序') {
     dialogVisible.value = !dialogVisible.value;
   } else {
-    window.open(url, '_blank', 'noopener=yes,noreferrer=yes');
+    url.forEach((e: string) => {
+      const winblank = window.open(e)!;
+      winblank.opener = null;
+    });
   }
 }
 </script>
