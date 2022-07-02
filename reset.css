@@ -25,3 +25,30 @@ li {
 p {
   margin-block-start: 0;
 }
+
+@keyframes runloading {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+/* loading */
+.loading-mask {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  text-align: center;
+  font-family: 'STXingkai';
+}
+
+.loading-svg {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-top: 32px;
+  animation: runloading 5s linear infinite;
+}
