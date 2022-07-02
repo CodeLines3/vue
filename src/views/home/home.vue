@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onUnmounted, computed } from "vue";
+import { ref, onUnmounted, computed, onErrorCaptured } from "vue";
 import { Edu, Jobs, Projects, Info, JobLabels, ProLabels, Feature } from "./cache";
 import TreeAbility from "./modules/tree.vue";
 import userFeatures from "./composables/useFeatures";
@@ -35,7 +35,9 @@ function handleMinipro() {
 onUnmounted(() => {
   subscription.unsubscribe();
 });
-
+onErrorCaptured(() => {
+  
+});
 </script>
 
 <template>

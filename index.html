@@ -1,16 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/reset.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>个人简历</title>
-  </head>
-  <body>
-    <div id="app">
-      请下载最新浏览器查看
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/reset.css" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>个人简历</title>
+</head>
+
+<body>
+  <div id="app">
+    <div class="loading-mask">
+      <div class="loading-text">内圣外王</div>
+      <span class="loading-svg">
+        <svg viewBox="0 0 200 200" width="100%" height="100%">
+          <g>
+            <circle cx="100" cy="100" r="99" fill="black" stroke="black"></circle>
+            <path stroke="black" fill="white" stroke-width="2" d="M100 2
+            A 50 50 0 0 1 100 198
+            A 25 25 0 0 0 100 100
+            A 25 25 0 0 1 100 2" />
+            <circle cx="100" cy="50" r="20" fill="black" stroke="black"></circle>
+            <circle cx="100" cy="150" r="20" fill="white" stroke="black"></circle>
+            <!-- <animate attributeName="transform" attributeType="XML" type="rotate" from="0 100 100"
+              to="360 100 100" dur="5s" repeatCount="indefinite" /> -->
+          </g>
+        </svg>
+      </span>
     </div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
