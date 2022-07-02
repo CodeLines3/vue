@@ -8,11 +8,6 @@ import Dayjs from "dayjs";
 import MiniPro from "@/assets/me.jpg";
 import useSaver from "./composables/useSaver";
 
-const { featureOption } = userFeatures(Feature);
-const offset = computed(() => window.innerHeight / 2);
-const homeEl: any = ref(null); // 截图节点
-const dialogVisible = ref(false);
-
 /** 下载时间 */
 let current = ref("");
 const subscription: Subscription = interval(1000)
@@ -21,41 +16,38 @@ const subscription: Subscription = interval(1000)
     const date = Dayjs().format("YYYY-MM-DD HH:mm:ss");
     current.value = date;
   });
-const {isLoaded, download} = useSaver(homeEl, current.value);
+// 设置echart option
+const { featureOption } = userFeatures(Feature);
+
+// 下载
+const homeEl: any = ref(null); // 截图节点
+const { isLoaded, download } = useSaver(homeEl, current.value);
+
+// PC 计算下载按钮位置
+const offset = computed(() => window.innerHeight / 2);
+
+// 放大小程序
+const dialogVisible = ref(false);
+function handleMinipro() {
+  dialogVisible.value = !dialogVisible.value;
+}
 /** 钩子函数 */
 onUnmounted(() => {
   subscription.unsubscribe();
 });
 
-// 下载
-function handleSave() {
-  download();
-}
-
-// 打开链接
-function handleDbClick(data: any) {
-  const { url, text } = data;
-  if (text === '小程序') {
-    dialogVisible.value = !dialogVisible.value;
-  } else {
-    url.forEach((e: string) => {
-      const winblank = window.open(e)!;
-      winblank.opener = null;
-    });
-  }
-}
 </script>
 
 <template>
   <div class="wrapper">
     <div class="home" ref="homeEl">
       <el-affix :offset="offset" target=".home">
-        <el-button type="primary" @click="handleSave">下载</el-button>
+        <el-button type="primary" @click="download">下载</el-button>
       </el-affix>
       <div class="current">{{ current }}</div>
       <ul>
         <li class="info grid">
-          <img :src="MiniPro" alt="小程序" />
+          <img :src="MiniPro" alt="小程序" @click="handleMinipro" />
           <el-row class="flex-item">
             <el-col :span="10" :xs="{ span: 24 }" v-for="(item, index) of Info" :key="index" :title="item.label">
               <label class="label">{{ item.label }}：</label>
@@ -71,9 +63,9 @@ function handleDbClick(data: any) {
                 <el-col :span="3" :xs="{ span: 4 }" v-if="t.label" class="label">
                   {{ t.label }}：
                 </el-col>
-                <el-col :span="21" :xs="{ span: 24 }" :class="{'flex-col':t.key==='name', content: !t.span }">
+                <el-col :span="21" :xs="{ span: 24 }" :class="{ 'flex-col': t.key === 'name', content: !t.span }">
                   <span>{{ item[t.key] }}</span>
-                  <span class="sub" v-if="t.key==='name' && t.sub">{{ item.sub }}</span>
+                  <span class="sub" v-if="t.key === 'name' && t.sub">{{ item.sub }}</span>
                 </el-col>
               </el-row>
             </el-col>
@@ -84,7 +76,7 @@ function handleDbClick(data: any) {
           <el-row v-for="item of Projects" :key="item.id" class="level">
             <el-col v-for="t of ProLabels" :key="t.key" :class="t.key" :span="t.span" :xs="t.xs">
               <el-row>
-                <el-col :span="3" :xs="{span: 3}" v-if="t.label" class="label">
+                <el-col :span="3" :xs="{ span: 3 }" v-if="t.label" class="label">
                   {{ t.label }}：
                 </el-col>
                 <el-col :span="21" :xs="{ span: 24 }" :class="{ content: !t.span }">
@@ -98,7 +90,7 @@ function handleDbClick(data: any) {
             </el-col>
           </el-row>
         </li>
-        <li :class="['edu', { ptop: !isLoaded}]">
+        <li :class="['edu', { ptop: !isLoaded }]">
           <p class="title">教育经历</p>
           <el-row class="level">
             <el-col :span="6" :xs="{ span: 24 }" v-for="(item, index) of Edu" :key="index" :title="item.label">
@@ -114,9 +106,9 @@ function handleDbClick(data: any) {
         </li>
         <li class="ability" id="ability">
           <p class="title">技能展示</p>
-          <a href="https://codelines3.github.io/vue/" target="_blank" rel="noopener noreferrer"
-            class="flex-item text-m">https://codelines3.github.io/vue</a>
-          <TreeAbility @dbclick="handleDbClick" />
+          <a href="https://github.com/CodeLines3" target="_blank" rel="noopener noreferrer"
+            class="flex-item text-m">https://github.com/CodeLines3</a>
+          <TreeAbility @dbclick="handleMinipro" />
         </li>
         <li class=" flex-col">
           <p class="title">职业素养</p>
@@ -141,7 +133,7 @@ function handleDbClick(data: any) {
   margin-left: calc(100% + 2cm);
 }
 
-a{ 
+a {
   display: inline-block;
   text-decoration: none;
   border-bottom: 1px solid #00f;
@@ -165,9 +157,11 @@ a{
   line-height: 32px;
   color: #099;
 }
+
 p {
   line-height: 32px;
 }
+
 .title {
   position: relative;
   font-weight: 600;
@@ -283,9 +277,11 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .el-row {
       width: 100%;
     }
+
     img {
       transform: none;
       width: 32%;
@@ -312,7 +308,8 @@ ul {
     }
   }
 
-  .down, .el-affix {
+  .down,
+  .el-affix {
     display: none;
   }
 }

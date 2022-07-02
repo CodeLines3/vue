@@ -42,11 +42,11 @@ function init() {
           case 'L1':
             return '#41b883';
           case 'L2':
-            return '#cc6699';
+            return '#76ae63';
           case 'L3':
-            return '#0cc';
+            return '#cc6699';
           case 'L4':
-            return '#fb4f27';
+            return '#0cc';
           case 'R1':
             const head2 = key.substr(0, 3);
             switch (head2) {
@@ -95,10 +95,23 @@ function init() {
       case 'Link':
         break;
       default:
-        emit('dbclick', data);
+        handleDbClick(data)
         break;
     }
   });
+}
+
+// 双击节点
+function handleDbClick(data: any) {
+  const { url, text } = data;
+  if (text === '小程序') {
+    emit('dbclick', data);
+  } else {
+    url.forEach((e: string) => {
+      const winblank = window.open(e)!;
+      winblank.opener = null;
+    });
+  }
 }
 
 onMounted(() => {

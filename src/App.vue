@@ -7,8 +7,8 @@
 
 <style lang="scss">
 #app {
-  position:relative;
+  position: relative;
   height: 100%;
-  width:100%;
+  width: 100%;
 }
 </style>

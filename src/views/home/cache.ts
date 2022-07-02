@@ -82,12 +82,6 @@ export const Feature = {
 // 项目经历
 export const Edu = [
   {
-    label: "学校名称",
-    value: "安徽理工大学",
-    url: "https://www.aust.edu.cn",
-    img: "/images/school.png",
-  },
-  {
     label: "学历",
     value: "本科 · 统招",
   },
@@ -99,6 +93,12 @@ export const Edu = [
     label: "在校时间",
     value: "2014.09 - 2018.06",
   },
+  {
+    label: "学校名称",
+    value: "安徽理工大学",
+    url: "https://www.aust.edu.cn",
+    img: "/images/school.png",
+  }
 ];
 // 专业技能
 export const Ability: any = [
@@ -172,24 +172,37 @@ export const Ability: any = [
     parent: "R1",
     url: ["https://developers.weixin.qq.com/miniprogram/dev/framework/"],
   },
-  { key: "L2", text: "CSS(3)", parent: "root", dir: "right" },
+  {
+    key: "L2",
+    text: "Node",
+    parent: "root",
+    dir: "right",
+    url: ["http://nodejs.cn/api/"],
+  },
   {
     key: "L21",
-    text: "Sass",
+    text: "Koa2、mongoose",
     parent: "L2",
-    url: ["https://www.sass.hk/", "https://less.bootcss.com/features/"],
+    url: ["https://www.koajs.com.cn/", "http://www.mongoosejs.net/docs/guide.html"],
   },
-  { key: "L3", text: "版本部署", parent: "root", dir: "right" },
+  { key: "L3", text: "CSS(3)", parent: "root", dir: "right" },
   {
     key: "L31",
-    text: "Git、Svn",
+    text: "Sass(主)",
     parent: "L3",
+    url: ["https://www.sass.hk/", "https://less.bootcss.com/features/"],
+  },
+  { key: "L4", text: "版本部署", parent: "root", dir: "right" },
+  {
+    key: "L41",
+    text: "Git、Svn",
+    parent: "L4",
     url: ["https://git-scm.com/docs", "https://tortoisesvn.net/"],
   },
   {
-    key: "L32",
+    key: "L42",
     text: "Nginx",
-    parent: "L3",
+    parent: "L4",
     url: ["http://nginx.org/en/docs/"],
   },
   {
